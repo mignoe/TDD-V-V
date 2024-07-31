@@ -34,4 +34,16 @@ class IngressoTest {
         assertEquals(TipoIngresso.MEIA_ENTRADA, ingressoMeiaEntrada.getTipo());
         assertFalse(ingressoMeiaEntrada.isVendido());
     }
+    
+    @Test
+    public void testMarcarComoVendido() {
+        ingressoVIP.marcarComoVendido();
+        assertTrue(ingressoVIP.isVendido());
+
+        ingressoNormal.marcarComoVendido();
+        assertTrue(ingressoNormal.isVendido());
+
+        ingressoMeiaEntrada.marcarComoVendido();
+        assertTrue(ingressoMeiaEntrada.isVendido());
+    }
 }
