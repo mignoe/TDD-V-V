@@ -22,4 +22,8 @@ public class Ingresso {
     public boolean isVendido() {
         return vendido;
     }
+    
+    public void marcarComoVendido() {
+        this.vendido = true;
+    }
 }
