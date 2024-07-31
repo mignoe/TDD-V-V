@@ -2,9 +2,11 @@
 import java.time.LocalDate;
 import java.time.Month;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.example.processador.Conta;
 import com.example.processador.Fatura;
 import com.example.processador.ProcessadorContas;
 
@@ -21,7 +23,12 @@ public class ProcessadorContasTest {
 
     @Test
     void testProcessarContasFaturaPagaBoleto(){
+        fatura.adicionarConta(new Conta(001, LocalDate.of(2023, Month.FEBRUARY, 20), 500, "BOLETO"));
+        fatura.adicionarConta(new Conta(002, LocalDate.of(2023, Month.FEBRUARY, 20), 400, "BOLETO"));
+        fatura.adicionarConta(new Conta(003, LocalDate.of(2023, Month.FEBRUARY, 20), 600, "BOLETO"));
 
+        processador.processar(fatura);
+        assertEquals(fatura.getStatus(),"PAGA");
     }
 
     @Test
@@ -31,7 +38,7 @@ public class ProcessadorContasTest {
 
     @Test
     void testProcessarContasFaturaPendente(){
-        
+
     }
 
 }

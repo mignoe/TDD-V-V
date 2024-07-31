@@ -6,8 +6,8 @@ public class ProcessadorContas {
 
     }
 
-    public void processar(){
-        
+    public void processar(Fatura fatura){
+
     }
     
 }
