@@ -48,4 +48,11 @@ class LoteDeIngressosTest {
 	 public void testGetDesconto() {
 	     assertEquals(15.0, lote.getDesconto());
 	 }
+	 
+	 @Test
+	    public void testDescontoMaximo() {
+			assertThrows(IllegalArgumentException.class, () -> {
+	            new LoteDeIngressos(2, Arrays.asList(ingressoVIP), 30.0);
+	        });
+	    }
 }
