@@ -27,4 +27,5 @@ public class LoteDeIngressos {
 	    public double getDesconto() {
 	        return desconto;
 	    }
+	    
 }

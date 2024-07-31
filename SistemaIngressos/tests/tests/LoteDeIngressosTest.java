@@ -39,8 +39,8 @@ class LoteDeIngressosTest {
 	 @Test
 	 public void testGetIngressos() {
 	     assertEquals(3, lote.getIngressos().size());
-	     assertEquals(TipoIngresso.NORMAL, lote.getIngressos().get(0).getTipo());
-	     assertEquals(TipoIngresso.VIP, lote.getIngressos().get(1).getTipo());
+	     assertEquals(TipoIngresso.VIP, lote.getIngressos().get(0).getTipo());
+	     assertEquals(TipoIngresso.NORMAL, lote.getIngressos().get(1).getTipo());
 	     assertEquals(TipoIngresso.MEIA_ENTRADA, lote.getIngressos().get(2).getTipo());
 	 }
 	 
