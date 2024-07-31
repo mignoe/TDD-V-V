@@ -55,4 +55,11 @@ class LoteDeIngressosTest {
 	            new LoteDeIngressos(2, Arrays.asList(ingressoVIP), 30.0);
 	        });
 	    }
+	 
+	 @Test
+	    public void testCalcularPrecoFinal() {
+	        double precoNormal = 100.0;
+
+	        assertEquals(170.0 + 85 + 50, lote.calcularPrecoFinal(precoNormal), 0.001); // 15% de desconto em R$ 200,00
+	    }
 }
