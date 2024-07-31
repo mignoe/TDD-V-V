@@ -33,7 +33,7 @@ class LoteDeIngressosTest {
         assertEquals(1, lote.getId());
         assertNotNull(lote.getIngressos());
         assertEquals(3, lote.getIngressos().size());
-        assertEquals(10.0, lote.getDesconto(), 0.001);
+        assertEquals(15.0, lote.getDesconto());
     }
 	 
 	 @Test
@@ -46,6 +46,6 @@ class LoteDeIngressosTest {
 	 
 	 @Test
 	 public void testGetDesconto() {
-	     assertEquals(10.0, lote.getDesconto(), 0.001);
+	     assertEquals(15.0, lote.getDesconto());
 	 }
 }
