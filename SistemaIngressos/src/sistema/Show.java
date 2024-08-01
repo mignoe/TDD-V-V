@@ -20,4 +20,12 @@ public class Show {
         this.lotes = new ArrayList<>();
         this.dataEspecial = dataEspecial;
     }
+    
+    public String getData() {
+    	return this.data;
+    }
+    
+    public String getArtista() {
+    	return this.artista;
+    }
 }
