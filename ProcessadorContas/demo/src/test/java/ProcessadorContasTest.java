@@ -32,6 +32,17 @@ public class ProcessadorContasTest {
     }
 
     @Test
+    void testProcessarContasBoletoValorAlto(){
+        fatura = new Fatura(LocalDate.of(2023, Month.FEBRUARY, 20),6000,"Fábio Maciel");
+
+        fatura.adicionarConta(new Conta(001, LocalDate.of(2023, Month.FEBRUARY, 20), 5500, "BOLETO"));
+        fatura.adicionarConta(new Conta(002, LocalDate.of(2023, Month.FEBRUARY, 20), 500, "BOLETO"));
+
+        processador.processar(fatura);
+        assertEquals(fatura.getStatus(),"PENDENTE");
+    }
+
+    @Test
     void testProcessarContasFaturaPagaCartaoCreditoETransferenciaBancaria(){
         fatura.adicionarConta(new Conta(001, LocalDate.of(2023, Month.FEBRUARY, 5), 700, "CARTAO_CREDITO"));
         fatura.adicionarConta(new Conta(002, LocalDate.of(2023, Month.FEBRUARY, 17), 800, "TRANSFERENCIA_BANCARIA"));
