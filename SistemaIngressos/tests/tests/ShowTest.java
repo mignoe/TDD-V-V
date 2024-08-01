@@ -20,13 +20,15 @@ public class ShowTest {
 
     @Before
     public void setUp() {
-        show = new Show(new Date(), "Artista Famoso", 1000.0, 2000.0, true);
+        show = new Show("31/07/2024", "Artista Famoso", 1000.0, 2000.0, true);
     }
 
     @Test
     public void testCriacaoShow() {
         assertNotNull(show);
         assertNotNull(show.getData());
+        assertEquals("31/07/2024", show.getData());
         assertNotNull(show.getArtista());
+        assertEquals("Artista Famoso", show.getArtista());
     }
 }
