@@ -56,4 +56,26 @@ public class LoteDeIngressos {
 
 	        return total;
 	    }
+	    
+	    public double calcularPrecoIngresso(Ingresso ingresso, double precoNormal) {
+	    	double precoBase = 0.0;
+        	
+        	switch (ingresso.getTipo()) {
+        	case VIP:
+        		precoBase = precoNormal * 2;
+        		break;
+        	case MEIA_ENTRADA:
+        		precoBase = precoNormal / 2;
+        		break;
+        	case NORMAL:
+        		precoBase = precoNormal;
+        		break;
+        	}
+        	
+        	if (ingresso.getTipo() != TipoIngresso.MEIA_ENTRADA) {
+        		precoBase -= precoBase * (desconto / 100);
+        	}
+        	
+        	return precoBase;
+	    }
 }

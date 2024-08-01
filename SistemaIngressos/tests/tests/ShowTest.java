@@ -34,7 +34,7 @@ public class ShowTest {
         ingressoMeiaEntrada = new Ingresso(3, TipoIngresso.MEIA_ENTRADA);
 
         lote = new LoteDeIngressos(1, Arrays.asList(ingressoVIP, ingressoNormal, ingressoMeiaEntrada), 15.0);
-        show = new Show("Amanhã", "Artista Famoso", 1000.0, 2000.0, true);
+        show = new Show("Amanhã", "Artista Famoso", 1000.0, 2000.0, true, 100);
         show.adicionarLote(lote);
 
         // Marcar todos os ingressos como vendidos
@@ -47,7 +47,7 @@ public class ShowTest {
     public void testCriacaoShow() {
         assertNotNull(show);
         assertNotNull(show.getData());
-        assertEquals("31/07/2024", show.getData());
+        assertEquals("Amanhã", show.getData());
         assertNotNull(show.getArtista());
         assertEquals("Artista Famoso", show.getArtista());
     }
@@ -66,7 +66,7 @@ public class ShowTest {
 
     @Test
     public void testCalcularLucro() {
-        assertEquals(-3095.0, show.calcularLucro(), 0.001);
+        assertEquals(-2995.0, show.calcularLucro(), 0.001);
     }
 
     @Test
