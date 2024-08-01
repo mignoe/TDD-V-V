@@ -1,6 +1,7 @@
 package com.example.processador;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Fatura {
@@ -12,13 +13,14 @@ public class Fatura {
     private String status;
 
     public Fatura(){
-        
+        this.contas = new ArrayList<>();
     }
 
     public Fatura(LocalDate data, double valorTotal, String nomeCliente) {
         this.data = data;
         this.valorTotal = valorTotal;
         this.nomeCliente = nomeCliente;
+        this.contas = new ArrayList<>();
     }
 
     public void adicionarConta(Conta conta){
