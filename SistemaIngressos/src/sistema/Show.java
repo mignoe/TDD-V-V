@@ -12,6 +12,8 @@ public class Show {
     private List<LoteDeIngressos> lotes;
     private boolean dataEspecial;
     private double precoIngressoNormal;
+    private StatusVendaShow status_venda_show;
+
 
     public Show(String data, String artista, double cache, double despesasInfraestrutura, boolean dataEspecial, double precoIngressoNormal) {
         this.data = data;
@@ -21,6 +23,7 @@ public class Show {
         this.lotes = new ArrayList<>();
         this.dataEspecial = dataEspecial;
         this.precoIngressoNormal = precoIngressoNormal;
+        this.status_venda_show = StatusVendaShow.VENDENDO;
     }
     
 
@@ -78,5 +81,44 @@ public class Show {
     
     public String getArtista() {
     	return this.artista;
+    }
+    
+    public LoteDeIngressos getLote(int i)  {
+    	return lotes.get(i);
+    }
+    
+    private boolean proporcaoTipoIngressoEstaCorreta() {
+    	int meia_entrada = 0;
+    	int vips = 0;
+    	int normais = 0;
+    	
+    	for (LoteDeIngressos lote : lotes) {
+            for (Ingresso ingresso : lote.getIngressos()) {
+                switch (ingresso.getTipo()) {
+                	case TipoIngresso.MEIA_ENTRADA:
+                		meia_entrada += 1;
+                	case TipoIngresso.VIP: 
+                		vips += 1;
+                	case TipoIngresso.NORMAL:
+                		normais += 1;
+                }
+            }
+    	}
+    	
+    	int total = meia_entrada + vips + normais;
+    	
+    	if (vips/total < 0.2 || vips / total > 0.3 || meia_entrada / total != 0.1) return false;
+    	
+    	
+    	return true;
+             
+    }
+    
+    public void fecharVendaDeIngressos() {
+    	if (this.proporcaoTipoIngressoEstaCorreta()) {
+    		this.status_venda_show = StatusVendaShow.FECHADO;
+    	} else {
+    		throw 
+    	}
     }
 }
