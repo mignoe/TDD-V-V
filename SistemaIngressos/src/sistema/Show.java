@@ -115,10 +115,10 @@ public class Show {
     }
     
     public void fecharVendaDeIngressos() {
-    	if (this.proporcaoTipoIngressoEstaCorreta()) {
-    		this.status_venda_show = StatusVendaShow.FECHADO;
-    	} else {
-    		throw 
-    	}
+        if (this.proporcaoTipoIngressoEstaCorreta()) {
+            this.status_venda_show = StatusVendaShow.FECHADO;
+        } else {
+            throw new RuntimeException("proporcao ingressos incorreta");
+        }
     }
 }

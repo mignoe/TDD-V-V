@@ -1,4 +1,4 @@
-package tests;
+package functional_tests;
 
 
 import static org.junit.Assert.assertNotNull;
@@ -21,7 +21,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 
-public class ShowTest {
+public class RobustLimitValueTests {
 	private Show show;
 	int counter_id = 1;
     private Ingresso ingressoVIP;
@@ -29,13 +29,24 @@ public class ShowTest {
     private Ingresso ingressoMeiaEntrada;
     private LoteDeIngressos lote;
     
-    private Ingresso[] inserirNIngressos(int nVips, int nMeias, int nNormais, ) {
+    private Ingresso[] criarNIngressos(int nVips, int nMeias, int nNormais) {
     	int total = nVips + nMeias + nNormais;
     	
     	Ingresso[] ingressos = new Ingresso[total];
+    	int index = 0;
+    	
     	for (int i = 0; i < nVips; i++) {    		
-    		ingressos[i] = new Ingresso(counter_id++, TipoIngresso.VIP);
+    		ingressos[index++] = new Ingresso(counter_id++, TipoIngresso.VIP);
     	}
+    	
+    	for (int i = 0; i < nMeias; i++) {    		
+    		ingressos[index++] = new Ingresso(counter_id++, TipoIngresso.MEIA_ENTRADA);
+    	}
+    	
+    	for (int i = 0; i < nNormais; i++) {    		
+    		ingressos[index++] = new Ingresso(counter_id++, TipoIngresso.NORMAL);
+    	}
+    	
     	
     	return ingressos;
     }
@@ -63,10 +74,9 @@ public class ShowTest {
 
     @Test
     public void testVIP19Porcento() {
-    	lote = new LoteDeIngressos(1, Arrays.asList(ingressoVIP, ingressoNormal, ingressoMeiaEntrada), 15.0);
+    	Ingresso[] ingressos = criarNIngressos(19, 10, 71);
+    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
         assertEquals("PREJUÍZO", show.getStatusFinanceiro());
     }
-    
-
     
 }
