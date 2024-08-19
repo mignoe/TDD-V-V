@@ -1,9 +1,10 @@
 package tests;
 import sistema.Ingresso;
+import sistema.TipoIngresso;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class IngressoTest {
@@ -12,7 +13,7 @@ class IngressoTest {
     private Ingresso ingressoNormal;
     private Ingresso ingressoMeiaEntrada;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         ingressoVIP = new Ingresso(1, TipoIngresso.VIP);
         ingressoNormal = new Ingresso(2, TipoIngresso.NORMAL);
@@ -32,5 +33,17 @@ class IngressoTest {
         assertEquals(3, ingressoMeiaEntrada.getId());
         assertEquals(TipoIngresso.MEIA_ENTRADA, ingressoMeiaEntrada.getTipo());
         assertFalse(ingressoMeiaEntrada.isVendido());
+    }
+    
+    @Test
+    public void testMarcarComoVendido() {
+        ingressoVIP.marcarComoVendido();
+        assertTrue(ingressoVIP.isVendido());
+
+        ingressoNormal.marcarComoVendido();
+        assertTrue(ingressoNormal.isVendido());
+
+        ingressoMeiaEntrada.marcarComoVendido();
+        assertTrue(ingressoMeiaEntrada.isVendido());
     }
 }
