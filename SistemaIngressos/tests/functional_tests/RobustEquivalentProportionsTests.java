@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 
-public class RobustLimitValueTests {
+public class RobustEquivalentProportionsTests {
 	private Show show;
 	int counter_id = 1;
     private Ingresso ingressoVIP;
@@ -74,8 +74,48 @@ public class RobustLimitValueTests {
     }
 
     @Test
-    public void testVIP19Porcento() {
-    	Ingresso[] ingressos = criarNIngressos(19, 10, 71);
+    public void testVIP19PorcentoMeia8Porcento() {
+    	Ingresso[] ingressos = criarNIngressos(19, 8, 73);
+    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
+    	
+    	show.adicionarLote(lote);
+    	
+    	RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            // Code that should throw the exception
+    		show.fecharVendaDeIngressos();
+        });
+    	
+    	
+
+        assertEquals("proporcao ingressos incorreta", exception.getMessage());
+    }
+
+   
+    
+   
+    
+    
+    @Test
+    public void testVIP19PorcentoMeia12Porcento() {
+    	Ingresso[] ingressos = criarNIngressos(19, 12, 69);
+    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
+    	
+    	show.adicionarLote(lote);
+    	
+    	RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            // Code that should throw the exception
+    		show.fecharVendaDeIngressos();
+        });
+    	
+    	
+
+        assertEquals("proporcao ingressos incorreta", exception.getMessage());
+    }
+    
+    
+    @Test
+    public void testVip32PorcentoMeia12Porcento() {
+    	Ingresso[] ingressos = criarNIngressos(32, 12, 56);
     	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
     	
     	show.adicionarLote(lote);
@@ -91,110 +131,8 @@ public class RobustLimitValueTests {
     }
     
     @Test
-    public void testVIP20Porcento() {
-    	Ingresso[] ingressos = criarNIngressos(20, 10, 70);
-    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
-    	
-    	show.adicionarLote(lote);
-    	
-    	show.fecharVendaDeIngressos();
-    	
-    	assertEquals(StatusVendaShow.FECHADO, show.getStatusVendaShow());
-    	
-    	
-    }
-    
-    @Test
-    public void testVIP21Porcento() {
-    	Ingresso[] ingressos = criarNIngressos(21, 10, 69);
-    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
-    	
-    	show.adicionarLote(lote);
-    	
-    	show.fecharVendaDeIngressos();
-    	
-    	assertEquals(StatusVendaShow.FECHADO, show.getStatusVendaShow());
-    	
-    	
-    }
-    
-    @Test
-    public void testVIP25Porcento() {
-    	Ingresso[] ingressos = criarNIngressos(25, 10, 65);
-    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
-    	
-    	show.adicionarLote(lote);
-    	
-    	show.fecharVendaDeIngressos();
-    	
-    	assertEquals(StatusVendaShow.FECHADO, show.getStatusVendaShow());
-    	
-    	
-    }
-    
-    @Test
-    public void testVIP30Porcento() {
-    	Ingresso[] ingressos = criarNIngressos(30, 10, 60);
-    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
-    	
-    	show.adicionarLote(lote);
-    	
-    	show.fecharVendaDeIngressos();
-    	
-    	assertEquals(StatusVendaShow.FECHADO, show.getStatusVendaShow());
-    	
-    	
-    }
-    
-    @Test
-    public void testVIP31Porcento() {
-    	Ingresso[] ingressos = criarNIngressos(31, 10, 59);
-    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
-    	
-    	show.adicionarLote(lote);
-    	
-    	RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            // Code that should throw the exception
-    		show.fecharVendaDeIngressos();
-        });
-    	
-    	
-
-        assertEquals("proporcao ingressos incorreta", exception.getMessage());
-    }
-    
-    @Test
-    public void testMeia10Porcento() {
-    	Ingresso[] ingressos = criarNIngressos(30, 10, 60);
-    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
-    	
-    	show.adicionarLote(lote);
-    	
-    	show.fecharVendaDeIngressos();
-    	
-    	assertEquals(StatusVendaShow.FECHADO, show.getStatusVendaShow());
-    }
-    
-    @Test
-    public void testMeia9Porcento() {
-    	Ingresso[] ingressos = criarNIngressos(25, 9, 66);
-    	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
-    	
-    	show.adicionarLote(lote);
-    	
-    	RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            // Code that should throw the exception
-    		show.fecharVendaDeIngressos();
-        });
-    	
-    	
-
-        assertEquals("proporcao ingressos incorreta", exception.getMessage());
-    }
-    
-    @Test
-    public void testMeia11Porcento() {
-    	Ingresso[] ingressos = criarNIngressos(25, 11, 64);
+    public void testVip32PorcentoMeia8Porcento() {
+    	Ingresso[] ingressos = criarNIngressos(32, 8, 60);
     	lote = new LoteDeIngressos(1,Arrays.asList(ingressos), 15.0);
     	
     	show.adicionarLote(lote);

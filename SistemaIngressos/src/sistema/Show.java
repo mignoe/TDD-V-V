@@ -92,22 +92,29 @@ public class Show {
     	int vips = 0;
     	int normais = 0;
     	
-    	for (LoteDeIngressos lote : lotes) {
+    	for (LoteDeIngressos lote : this.lotes) {
+    		System.out.println(lote);
             for (Ingresso ingresso : lote.getIngressos()) {
                 switch (ingresso.getTipo()) {
                 	case TipoIngresso.MEIA_ENTRADA:
                 		meia_entrada += 1;
+                		break;
                 	case TipoIngresso.VIP: 
                 		vips += 1;
+                		break;
                 	case TipoIngresso.NORMAL:
                 		normais += 1;
+                		break;
                 }
             }
     	}
     	
     	int total = meia_entrada + vips + normais;
     	
-    	if (vips/total < 0.2 || vips / total > 0.3 || meia_entrada / total != 0.1) return false;
+    	double proporcaoVips = (double) vips /total;
+    	double proporcaoMeia = (double) meia_entrada / total;
+    	
+    	if (proporcaoVips < 0.2 || proporcaoVips > 0.3 || proporcaoMeia != 0.1) return false;
     	
     	
     	return true;
@@ -120,5 +127,15 @@ public class Show {
         } else {
             throw new RuntimeException("proporcao ingressos incorreta");
         }
+    }
+    
+    public StatusVendaShow getStatusVendaShow() {
+    	return this.status_venda_show;
+    }
+    
+    public double getCustoInfra() {
+    	if (dataEspecial) return 1.15 * despesasInfraestrutura;
+    	
+    	return despesasInfraestrutura;
     }
 }
